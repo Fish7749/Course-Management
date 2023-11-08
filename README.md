@@ -1,4 +1,4 @@
-# Course-Management
+# Courses-Management
 The web was created to manage courses.
 
 ## Features
