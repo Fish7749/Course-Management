@@ -26,5 +26,5 @@ The web was created to manage courses.
 ## Authors
 
 - [Trần Huyền Anh Thy](https://github.com/Fish7749)
-- [hạm Thị Nhật Khánh](https://github.com/khanh20521455)
+- [Phạm Thị Nhật Khánh](https://github.com/khanh20521455)
 - [Nguyễn Trần Cẩm Tiên](https://github.com)
