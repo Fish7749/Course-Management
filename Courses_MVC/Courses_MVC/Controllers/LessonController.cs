@@ -226,8 +226,6 @@ namespace Courses_MVC.Controllers
             return RedirectToAction(nameof(ListlessonAdmin));
         }
 
-       
-
         private bool LessonExists(int id)
         {
             return _context.Lessons.Any(e => e.lessonId == id);

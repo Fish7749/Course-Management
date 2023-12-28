@@ -122,10 +122,6 @@ namespace Courses_MVC.Controllers
             return View(receipt);
         }
 
-        
-        
-        
-
         // GET: Receipts/Delete/5
         public async Task<IActionResult> XoaHoaDon(int? id)
         {

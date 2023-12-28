@@ -236,9 +236,6 @@ namespace Courses_MVC.Controllers
             StatusMessage = $"Assignment submitted successfully";
             return RedirectToAction("LessonDetail", "lesson", new { id = curentlessonId });
         }
-
-
-
         private bool ExerciseInUserExists(string id)
         {
             return _context.ExerciseInUsers.Any(e => e.userId == id);
