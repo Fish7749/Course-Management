@@ -11423,11 +11423,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Course-Management-main\\Courses_MVC\\Courses_MVC\\Courses_MVC.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\source\\Fish7749\\Courses-Management\\Courses_MVC\\Courses_MVC\\Courses_MVC.csproj",
       "projectName": "Courses_MVC",
-      "projectPath": "C:\\Users\\Admin\\Desktop\\Course-Management-main\\Courses_MVC\\Courses_MVC\\Courses_MVC.csproj",
+      "projectPath": "C:\\Users\\Admin\\source\\Fish7749\\Courses-Management\\Courses_MVC\\Courses_MVC\\Courses_MVC.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Desktop\\Course-Management-main\\Courses_MVC\\Courses_MVC\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\source\\Fish7749\\Courses-Management\\Courses_MVC\\Courses_MVC\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

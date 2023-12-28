@@ -6,12 +6,19 @@
 }
 
 
-
+<style>
+    .login-form-icon {
+        text-align: center;
+        font-size: 100px;
+        color: #6a6868;
+    }
+</style>
 <div class="row justify-content-center">
     <div class="col-md-10">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2 class="text-info text-center mb-5">ĐĂNG KÍ TÀI KHOẢN</h2>
-            <hr />
+            <div class="login-form-icon">
+                <i class="fas fa-user-circle"></i>
+            </div>
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Input.UserName"></label>
@@ -27,8 +34,8 @@
                 <div class="form-group col-md-6">
                     <label asp-for="Input.Gender" class="control-label"></label>
                     <select asp-for="Input.Gender" class="form-control">
-                        <option value="Nam">Nam</option>
-                        <option value="Nữ">Nữ</option>
+                        <option value="Nam">Male</option>
+                        <option value="Nữ">Female</option>
                     </select>
                     <span asp-validation-for="Input.Gender" class="text-danger"></span>
                 </div>
@@ -49,7 +56,7 @@
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <p>Chọn ảnh đại diện</p>
+                <p>Choose a profile picture</p>
                 <label>
                     <input asp-for="Input.Avatar" type="radio" value="0" checked />
                     <img class="avatar-icon" src="~/img/icons/avatar1.png" alt="" />
@@ -68,7 +75,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-info btn-block">Tạo tài khoản</button>
+                <button type="submit" class="btn btn-info btn-block">Submit</button>
             </div>
 
         </form>

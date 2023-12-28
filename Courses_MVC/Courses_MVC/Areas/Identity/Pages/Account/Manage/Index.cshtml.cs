@@ -35,14 +35,14 @@ namespace Courses_MVC.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Phone(ErrorMessage = "{0} sai định dạng")]
-            [Display(Name = "Số điện thoại")]
+            [Phone(ErrorMessage = "{0} is in wrong format")]
+            [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
 
-            [Display(Name = "Ngày sinh")]
+            [Display(Name = "Date of birth")]
             public DateTime? Birthday { get; set; }
 
-            [Display(Name = "Địa chỉ")]
+            [Display(Name = "Address")]
             [StringLength(200)]
             public string? Address { get; set; }
         }
@@ -105,7 +105,7 @@ namespace Courses_MVC.Areas.Identity.Pages.Account.Manage
             await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Hồ sơ của bạn đã được cập nhật";
+            StatusMessage = "Your profile has been updated";
             return RedirectToPage();
         }
     }

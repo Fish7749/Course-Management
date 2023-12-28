@@ -31,7 +31,7 @@ namespace Courses_MVC.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Phải nhập {0}")]
+            [Required(ErrorMessage = "You must enter {0}")]
             [EmailAddress(ErrorMessage = "Sai định dạng Email")]
             public string Email { get; set; }
         }

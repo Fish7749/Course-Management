@@ -47,34 +47,34 @@ namespace Courses_MVC.Areas.Identity.Pages.Account
         public class InputModel
         {
             [DataType(DataType.Text)]
-            [Required(ErrorMessage = "Phải nhập {0}")]
-            [StringLength(100, ErrorMessage = "{0} phải dài từ {2} đến {1} kí tự.", MinimumLength = 6)]
-            [Display(Name = "Tên tài khoản")]
+            [Required(ErrorMessage = "You must enter {0}")]
+            [StringLength(100, ErrorMessage = "{0} must be {2} to {1} characters.", MinimumLength = 6)]
+            [Display(Name = "Account name")]
             public string UserName { get; set; }
 
-            [Required(ErrorMessage = "Phải nhập {0}")]
-            [EmailAddress(ErrorMessage = "Sai định dạng email")]
+            [Required(ErrorMessage = "You must enter {0}")]
+            [EmailAddress(ErrorMessage = "Wrong email format")]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required(ErrorMessage = "Phải nhập {0}")]
-            [StringLength(100, ErrorMessage = "{0} phải dài tư {2} đến {1} kí tự.", MinimumLength = 6)]
+            [Required(ErrorMessage = "You must enter {0}")]
+            [StringLength(100, ErrorMessage = "{0} must be {2} to {1} characters.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Mật khẩu")]
+            [Display(Name = "Password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Xác nhận Mật khẩu")]
-            [Compare("Password", ErrorMessage = "Mật khẩu nhập lại không đúng.")]
+            [Display(Name = "Confirm password")]
+            [Compare("Password", ErrorMessage = "Re-entered password is incorrect.")]
             public string ConfirmPassword { get; set; }
 
-            [Required(ErrorMessage = "Phải nhập {0}")]
+            [Required(ErrorMessage = "You must enter {0}")]
             [DataType(DataType.DateTime)]
-            [Display(Name = "Ngày sinh")]
+            [Display(Name = "Date of birth")]
             [DisplayFormat(DataFormatString ="{0:dd/MMM/yyyy}", ApplyFormatInEditMode = true)]
             public DateTime Birthday { get; set; }
 
-            [Display(Name = "Giới tính")]
+            [Display(Name = "Gender")]
             public string Gender { get; set; }
 
             [Required]
@@ -111,7 +111,7 @@ namespace Courses_MVC.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("Đã tạo User mới!");
+                    _logger.LogInformation("New User created!");
 
                     //Phát sinh token để gửi email
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -124,8 +124,8 @@ namespace Courses_MVC.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Xác nhận Email",
-                        $"Bạn đã đăng nhập thành công, hãy <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>bấm vào đây</a> để kích hoạt tài khoản.");
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirm Email",
+                        $"You have successfully logged in, please<a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>click here</a> to activate your account.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount) //options.SignIn.RequireConfirmedAccount = true;
                     {

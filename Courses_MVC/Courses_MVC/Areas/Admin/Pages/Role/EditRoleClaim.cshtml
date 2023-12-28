@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Gán đặc tính cho role";
 }
-<h2 class="text-center">@ViewData["Title"]: @Model.role.Name</h2>
+<h2 class="text-center" style="padding-top:50px">ASSIGN CHARACTERISTICS TO ROLE: @Model.role.Name</h2>
 <partial name="_StatusMessage" model="@Model.StatusMassage" />
 
 <hr />
@@ -22,9 +22,9 @@
                 <span asp-validation-for="Input.ClaimValue" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Cập nhật" class="btn btn-primary" />
-                <input type="submit" value="Xóa" asp-page-handler="Delete" class="btn btn-danger"  onclick="return confirm('Bạn chắn chắn xóa chứ?')"/>
-                <a class="btn btn-primary" asp-page="./Edit" asp-route-roleid="@Model.role.Id">Chỉnh sửa role</a>
+                <input type="submit" value="Update" class="btn btn-primary" />
+                <input type="submit" value="Remove" asp-page-handler="Delete" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')" />
+                <a class="btn btn-primary" asp-page="./Edit" asp-route-roleid="@Model.role.Id">Back</a>
             </div>
         </form>
     </div>

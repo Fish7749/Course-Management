@@ -24,14 +24,14 @@ namespace Courses_MVC.Areas.Admin.Pages.Role
 
         public class InputModel
         {
-            [Display(Name = "Tên claim")]
-            [Required(ErrorMessage = "Phải nhập {0}")]
-            [StringLength(266, MinimumLength = 3, ErrorMessage = "{0} phải dài từ {2} đến {1} kí tự")]
+            [Display(Name = "Claim name")]
+            [Required(ErrorMessage = "You must enter {0}")]
+            [StringLength(266, MinimumLength = 3, ErrorMessage = "{0} must be between {2} and {1} characters")]
             public string ClaimType { get; set; }
 
-            [Display(Name = "Giá trị")]
-            [Required(ErrorMessage = "Phải nhập {0}")]
-            [StringLength(266, MinimumLength = 3, ErrorMessage = "{0} phải dài từ {2} đến {1} kí tự")]
+            [Display(Name = "Value")]
+            [Required(ErrorMessage = "You must enter {0}")]
+            [StringLength(266, MinimumLength = 3, ErrorMessage = "{0} must be between {2} and {1} characters")]
             public string ClaimValue { get; set; }
         }
         [BindProperty]
@@ -42,12 +42,12 @@ namespace Courses_MVC.Areas.Admin.Pages.Role
         public IdentityRoleClaim<string> claim { get; set;  }
         public async Task<IActionResult> OnGet(int? claimid)
         {
-            if (claimid == null) return NotFound($"Không tìm thấy role, Id :{role.Name}");
+            if (claimid == null) return NotFound($"No role found, Id :{role.Name}");
             claim = _context.RoleClaims.Where(c => c.Id == claimid).FirstOrDefault();
-            if (claim == null) return NotFound($"Không tìm thấy role, Id :{role.Name}");
+            if (claim == null) return NotFound($"No role found, Id :{role.Name}");
 
             role = await _roleManager.FindByIdAsync(claim.RoleId);
-            if (role == null) return NotFound($"Không tìm thấy role, Id :{role.Name}");
+            if (role == null) return NotFound($"No role found, Id :{role.Name}");
 
             Input = new InputModel()
             {
@@ -59,12 +59,12 @@ namespace Courses_MVC.Areas.Admin.Pages.Role
         }
         public async Task<IActionResult> OnPostAsync(int? claimid)
         {
-            if (claimid == null) return NotFound($"Không tìm thấy role, Id :{role.Name}");
+            if (claimid == null) return NotFound($"No role found, Id :{role.Name}");
             claim = _context.RoleClaims.Where(c => c.Id == claimid).FirstOrDefault();
-            if (claim == null) return NotFound($"Không tìm thấy role, Id :{role.Name}");
+            if (claim == null) return NotFound($"No role found, Id :{role.Name}");
 
             role = await _roleManager.FindByIdAsync(claim.RoleId);
-            if (role == null) return NotFound($"Không tìm thấy role, Id :{role.Name}");
+            if (role == null) return NotFound($"No role found, Id :{role.Name}");
 
             if (!ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace Courses_MVC.Areas.Admin.Pages.Role
 
             if (_context.RoleClaims.Any(c => c.RoleId == role.Id && c.ClaimType == Input.ClaimType && c.ClaimValue == Input.ClaimValue && c.Id != claim.Id))
             {
-                ModelState.AddModelError(string.Empty, "Claim này đã có trong role");
+                ModelState.AddModelError(string.Empty, "This claim is already in the role");
                 return Page();
             }
 
@@ -82,23 +82,23 @@ namespace Courses_MVC.Areas.Admin.Pages.Role
 
             await _context.SaveChangesAsync();
             
-            StatusMassage = "Vừa cập nhât claim ";
+            StatusMassage = "Just updated claims ";
             return RedirectToPage("./Edit", new { roleId = role.Id });
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int? claimid)
         {
-            if (claimid == null) return NotFound($"Không tìm thấy role, Id :{role.Name}");
+            if (claimid == null) return NotFound($"No role found, Id :{role.Name}");
             claim = _context.RoleClaims.Where(c => c.Id == claimid).FirstOrDefault();
-            if (claim == null) return NotFound($"Không tìm thấy role, Id :{role.Name}");
+            if (claim == null) return NotFound($"No role found, Id :{role.Name}");
 
             role = await _roleManager.FindByIdAsync(claim.RoleId);
-            if (role == null) return NotFound($"Không tìm thấy role, Id :{role.Name}");
+            if (role == null) return NotFound($"No role found, Id :{role.Name}");
 
 
             await _roleManager.RemoveClaimAsync(role, new Claim(claim.ClaimType, claim.ClaimValue));
 
-            StatusMassage = "Vừa xóa claim ";
+            StatusMassage = "Just deleted the claim ";
             return RedirectToPage("./Edit", new { roleId = role.Id });
         }
     }

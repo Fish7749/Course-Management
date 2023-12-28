@@ -25,18 +25,18 @@ namespace Courses_MVC.Areas.Admin.Pages.User
         }
         [TempData]
         public string StatusMessage { get; set; }
-        public NotFoundObjectResult OnGet() => NotFound("không được truy cập");
+        public NotFoundObjectResult OnGet() => NotFound("No access allowed");
 
         public class InputModel
         {
-            [Display(Name = "Tên claim")]
-            [Required(ErrorMessage = "Phải nhập {0}")]
-            [StringLength(266, MinimumLength = 3, ErrorMessage = "{0} phải dài từ {2} đến {1} kí tự")]
+            [Display(Name = "Claim name")]
+            [Required(ErrorMessage = "You must enter {0}")]
+            [StringLength(266, MinimumLength = 3, ErrorMessage = "{0} must be between {2} and {1} characters")]
             public string ClaimType { get; set; }
 
-            [Display(Name = "Giá trị")]
-            [Required(ErrorMessage = "Phải nhập {0}")]
-            [StringLength(266, MinimumLength = 3, ErrorMessage = "{0} phải dài từ {2} đến {1} kí tự")]
+            [Display(Name = "Value")]
+            [Required(ErrorMessage = "You must enter {0}")]
+            [StringLength(266, MinimumLength = 3, ErrorMessage = "{0} must be between {2} and {1} characters")]
             public string ClaimValue { get; set; }
         }
         [BindProperty]
@@ -48,7 +48,7 @@ namespace Courses_MVC.Areas.Admin.Pages.User
         {
             user = await _userManager.FindByIdAsync(userid);
             if (user == null)
-                return NotFound($"Không tìm thấy user");
+                return NotFound($"User not found");
             return Page();
         }
 
@@ -56,17 +56,17 @@ namespace Courses_MVC.Areas.Admin.Pages.User
         {
             user = await _userManager.FindByIdAsync(userid);
             if (user == null)
-                return NotFound($"Không tìm thấy user");
+                return NotFound($"User not found");
             if (!ModelState.IsValid) return Page();
             var claims = _context.UserClaims.Where(c => c.UserId == user.Id);
 
             if(claims.Any(c => c.ClaimType == Input.ClaimType && c.ClaimValue == Input.ClaimValue))
             {
-                ModelState.AddModelError(string.Empty, "Đặc tính này đã tồn tại");
+                ModelState.AddModelError(string.Empty, "This characteristic already exists");
                 return Page();
             }
             await _userManager.AddClaimAsync(user, new Claim(Input.ClaimType, Input.ClaimValue));
-            StatusMessage = "Đã thêm đặc tính cho user";
+            StatusMessage = "Added properties for users";
             return RedirectToPage("./AddRole", new { id = user.Id });
         }
 
@@ -75,13 +75,13 @@ namespace Courses_MVC.Areas.Admin.Pages.User
         public async Task<IActionResult> OnGetEditClaimAsync(int? claimid)
         {
             if (claimid == null)
-                return NotFound($"Không tìm thấy user");
+                return NotFound($"User not found");
 
             userClaim = _context.UserClaims.Where(c => c.Id == claimid).FirstOrDefault();
 
             user = await _userManager.FindByIdAsync(userClaim.UserId);
             if (user == null)
-                return NotFound($"Không tìm thấy user");
+                return NotFound($"User not found");
 
             Input = new InputModel()
             {
@@ -94,19 +94,19 @@ namespace Courses_MVC.Areas.Admin.Pages.User
         public async Task<IActionResult> OnPostEditClaimAsync(int? claimid)
         {
             if (claimid == null)
-                return NotFound($"Không tìm thấy user");
+                return NotFound($"User not found");
 
             userClaim = _context.UserClaims.Where(c => c.Id == claimid).FirstOrDefault();
 
             user = await _userManager.FindByIdAsync(userClaim.UserId);
             if (user == null)
-                return NotFound($"Không tìm thấy user");
+                return NotFound($"User not found");
 
             if (_context.UserClaims.Any(c => c.ClaimType == Input.ClaimType 
                 && c.ClaimValue == Input.ClaimValue 
                 && c.Id != userClaim.Id))
             {
-                ModelState.AddModelError(string.Empty, "Claim này đã có");
+                ModelState.AddModelError(string.Empty, "This claim already exists");
                 return Page();
             }
 
@@ -115,25 +115,25 @@ namespace Courses_MVC.Areas.Admin.Pages.User
 
 
             await _context.SaveChangesAsync();
-            StatusMessage = "Đã cập nhật claim cho user thành công";
+            StatusMessage = "Updated claim for user successfully";
             return RedirectToPage("./AddRole", new { id = user.Id });
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int? claimid)
         {
             if (claimid == null)
-                return NotFound($"Không tìm thấy user");
+                return NotFound($"User not found");
 
             userClaim = _context.UserClaims.Where(c => c.Id == claimid).FirstOrDefault();
 
             user = await _userManager.FindByIdAsync(userClaim.UserId);
             if (user == null)
-                return NotFound($"Không tìm thấy user");
+                return NotFound($"User not found");
 
             await _userManager.RemoveClaimAsync(user, new Claim(userClaim.ClaimType, userClaim.ClaimValue));
 
             
-            StatusMessage = "Bạn đã xóa thành công";
+            StatusMessage = "You have successfully deleted it";
 
             return RedirectToPage("./AddRole", new { id = user.Id });
         }

@@ -38,18 +38,18 @@ namespace Courses_MVC.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [DataType(DataType.Password)]
-            [Display(Name = "Mật khẩu hiện tại")]
+            [Display(Name = "Old password")]
             public string OldPassword { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "{0} dài từ {2} đến {1} kí tự.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "{0} is between {2} and {1} characters.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Mật khẩu mới")]
+            [Display(Name = "New password")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Nhập lại mật khẩu mới")]
-            [Compare("NewPassword", ErrorMessage = "Lặp lại mật khẩu không chính xác.")]
+            [Display(Name = "Re-enter the new password")]
+            [Compare("NewPassword", ErrorMessage = "Repeated password incorrectly.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -95,7 +95,7 @@ namespace Courses_MVC.Areas.Identity.Pages.Account.Manage
 
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Đổi mật khẩu thành công.";
+            StatusMessage = "Password changed successfully.";
 
             return RedirectToPage();
         }

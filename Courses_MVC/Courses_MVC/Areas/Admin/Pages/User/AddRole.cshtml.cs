@@ -39,7 +39,7 @@ namespace Courses_MVC.Areas.Admin.Pages.User
         public string StatusMessage { get; set; }
 
         [BindProperty]
-        [DisplayName("Các role gán cho user")]
+        [DisplayName("Roles assigned to users")]
         public string[] roleNames { get; set; }
 
         public SelectList allRoles { get; set; }
@@ -52,13 +52,13 @@ namespace Courses_MVC.Areas.Admin.Pages.User
         {
             if (string.IsNullOrEmpty(id))
             {
-                return NotFound($"Không có user.");
+                return NotFound($"There are no users.");
             }
 
             user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
-                return NotFound($"Không thấy user, id =  '{_userManager.GetUserId(User)}'.");
+                return NotFound($"User not found, id =  '{_userManager.GetUserId(User)}'.");
             }
             roleNames = (await _userManager.GetRolesAsync(user)).ToArray<string>();
 
@@ -93,14 +93,14 @@ namespace Courses_MVC.Areas.Admin.Pages.User
         {
             if (string.IsNullOrEmpty(id))
             {
-                return NotFound($"Không có user.");
+                return NotFound($"There are no users.");
             }
 
             user = await _userManager.FindByIdAsync(id);
 
             if (user == null)
             {
-                return NotFound($"Không thấy user, id =  '{id}'.");
+                return NotFound($"User not found, id =  '{id}'.");
             }
 
             //roleName
@@ -136,7 +136,7 @@ namespace Courses_MVC.Areas.Admin.Pages.User
 
             
 
-            StatusMessage = $"Vừa cập nhật role cho user: {user.UserName}";
+            StatusMessage = $"You just updated the user's role: {user.UserName}";
 
             return RedirectToPage("./Index");
         }

@@ -49,37 +49,37 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-info btn-block">Đăng nhập</button>
+                    <button type="submit" class="btn btn-info btn-block">Login</button>
                 </div>
                 <div class="form-group">
                     <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Quên mật khẩu?</a>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot password?</a>
                     </p>
                     <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Đăng kí tài khoản mới</a>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Sign up for a new account</a>
                     </p>
 
                 </div>
             </form>
             <hr />
-            <p class="text-center mt-3">Hoặc đăng nhập bằng</p>
+            <p class="text-center mt-3">Or</p>
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
                     <div>
                         <p>
-                            Cấu hình
+                            
                         </p>
                     </div>
                 }
                 else
                 {
                     <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div class="form-row">
+                        <div class="form-row row justify-content-around">
 
                             @foreach (var provider in Model.ExternalLogins)
                             {
-                                <button type="submit" class="btn btn-outline-primary form-control col-md-6" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                <button type="submit" class="btn btn-outline-primary form-control col-4" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
                             }
 
                         </div>

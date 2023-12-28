@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Courses_MVC.Models.Receipt>
+@{
+    ViewData["Title"] = "Danh sách hóa đơn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main">
+    <partial name="_NavBar" />
+    <section>
+        <partial name="_AlertMessage" />
+        <h1 class="text-center mt-3" style="padding-top:30px">LIST OF INVOICES</h1>
+        <p class="count--css">Number of invoices: @ViewBag.count</p>
+        <div class="search-create">
+            
+            <div>
+                <a asp-controller="Receipts" asp-action="ThemHoaDon" class="btn btn-outline-success"><i class="fas fa-plus"></i> Add</a>
+            </div>
+        </div>
+        <div class="table-overflow" style="width:125%">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.registerId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.totalPrice)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.timeReceipt)
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="counterCell">
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.registerId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.totalPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.timeReceipt)
+                            </td>
+                            <td>
+                                <a asp-action="ChiTietHoaDon" asp-route-id="@item.receiptId"><i class="far fa-edit"></i></a> |
+                                <a asp-action="XoaHoaDon" asp-route-id="@item.receiptId" class="text-danger" onclick="return confirm('Are you sure to delete?')"><i class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+</main>
+<script>
+    const active_lienhe = document.querySelector('#active--hoadon')
+
+    active_lienhe.classList.add('active--css')
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

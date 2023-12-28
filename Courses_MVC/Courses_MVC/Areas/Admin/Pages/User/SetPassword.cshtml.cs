@@ -33,15 +33,15 @@ namespace Courses_MVC.Areas.Admin.Pages.User
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Phải nhật mật khẩu")]
-            [StringLength(100, ErrorMessage = "{0} phải dài từ {2} đến {1} kí tự.", MinimumLength = 6)]
+            [Required(ErrorMessage = "You must enter Password")]
+            [StringLength(100, ErrorMessage = "{0} must be between {2} and {1} characters.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Mật khẩu mới")]
+            [Display(Name = "New password")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Xác nhận mật khẩu")]
-            [Compare("NewPassword", ErrorMessage = "Lặp lại mật khẩu không đúng.")]
+            [Display(Name = "Confirm New password")]
+            [Compare("NewPassword", ErrorMessage = "Incorrect password repetition.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -50,13 +50,13 @@ namespace Courses_MVC.Areas.Admin.Pages.User
         {
             if (string.IsNullOrEmpty(id))
             {
-                return NotFound($"Không có user.");
+                return NotFound($"There are no users.");
             }
 
             user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
-                return NotFound($"Không thấy user, id =  '{_userManager.GetUserId(User)}'.");
+                return NotFound($"User not found, id =  '{_userManager.GetUserId(User)}'.");
             }
 
             //var hasPassword = await _userManager.HasPasswordAsync(user);
@@ -73,14 +73,14 @@ namespace Courses_MVC.Areas.Admin.Pages.User
         {
             if (string.IsNullOrEmpty(id))
             {
-                return NotFound($"Không có user.");
+                return NotFound($"There are no users.");
             }
 
             user = await _userManager.FindByIdAsync(id);
 
             if (user == null)
             {
-                return NotFound($"Không thấy user, id =  '{_userManager.GetUserId(User)}'.");
+                return NotFound($"User not found, id =  '{_userManager.GetUserId(User)}'.");
             }
             if (!ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace Courses_MVC.Areas.Admin.Pages.User
                 return Page();
             }
 
-            StatusMessage = $"Vừa cập nhật mật khẩu cho user: {user.UserName}";
+            StatusMessage = $"You just updated the user's password: {user.UserName}";
 
             return RedirectToPage("./Index");
         }

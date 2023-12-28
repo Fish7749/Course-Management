@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oLQbzYydsgjJcGM6iL23gtN6PUz44vX8Rufm9DcKfr3f6UaTk6mjXZ9I2kXL+OuMXsd75WxUC/gZOmBkmSIvhA==",
+  "dgSpecHash": "KFIqSO71EqDCjOLaRlkf/mL+pFlHNU6Fv07kBibacJyCjaocFmLydB6p9SF1g2zwcPIs7m3PS7BeWVamGAgskQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Desktop\\Course-Management-main\\Courses_MVC\\Courses_MVC\\Courses_MVC.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\source\\Fish7749\\Courses-Management\\Courses_MVC\\Courses_MVC\\Courses_MVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

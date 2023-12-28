@@ -48,7 +48,7 @@ namespace Courses_MVC.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "Email mới")]
+            [Display(Name = "New Email")]
             public string NewEmail { get; set; }
         }
 
@@ -104,9 +104,9 @@ namespace Courses_MVC.Areas.Identity.Pages.Account.Manage
                 await _emailSender.SendEmailAsync(
                     Input.NewEmail,
                     "Confirm your email",
-                    $"Bấm <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>vào đây </a> để đổi email.");
+                    $"Click <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>here </a> to change email.");
 
-                StatusMessage = "Hãy mở email để xác nhận.";
+                StatusMessage = "Please open the email to confirm.";
                 return RedirectToPage();
             }
 
