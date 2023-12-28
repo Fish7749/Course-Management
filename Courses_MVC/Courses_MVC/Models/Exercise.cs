@@ -10,34 +10,34 @@ namespace Courses_MVC.Models
     {
         public int exerciseId { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Tên bài tập")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "Assignment Name")]
         public string exerciseName { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Nội dung")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "Content")]
         public string content { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
+        [Required(ErrorMessage = "You must enter {0}")]
         [Display(Name = "Input")]
         public string input { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
+        [Required(ErrorMessage = "You must enter {0}")]
         [Display(Name = "Output")]
         public string output { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
+        [Required(ErrorMessage = "You must enter {0}")]
         [Display(Name = "Deadline")]
         public DateTime deadline { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Tên bài học")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "Lesson Name")]
         public int lessonId { get; set; }
 
         public Lesson Lesson { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Tên người dùng")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "Owner")]
         public string userId { get; set; }
 
         public AppUser AppUser { get; set; }

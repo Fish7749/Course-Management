@@ -21,9 +21,9 @@ namespace Courses_MVC.Areas.Admin.Pages.Role
         }
         public class InputModel
         {
-            [Display(Name = "Tên của role")]
-            [Required(ErrorMessage = "Phải nhập {0}")]
-            [StringLength(266, MinimumLength = 3, ErrorMessage = "{0} phải dài từ {2} đến {1} kí tự")]
+            [Display(Name = "Name of role")]
+            [Required(ErrorMessage = "You must enter {0}")]
+            [StringLength(266, MinimumLength = 3, ErrorMessage = "{0} must be between {2} and {1} characters")]
             public string name { get; set; }
         }
         [BindProperty]
@@ -35,7 +35,7 @@ namespace Courses_MVC.Areas.Admin.Pages.Role
         public async Task<IActionResult> OnGet(string roleId)
         {
             if (roleId == null)
-                return NotFound("Không tìm thấy role");
+                return NotFound("No role found");
             role = await _roleManager.FindByIdAsync(roleId);
             if (role != null)
             {
@@ -46,15 +46,15 @@ namespace Courses_MVC.Areas.Admin.Pages.Role
                 Claims = await _context.RoleClaims.Where(rc => rc.RoleId == role.Id).ToListAsync();
                 return Page();
             }
-            return NotFound("Không tìm thấy role");
+            return NotFound("No role found");
         }
         public async Task<IActionResult> OnPostAsync(string roleId)
         {
             if (roleId == null)
-                return NotFound("Không tìm thấy role");
+                return NotFound("No role founde");
             role = await _roleManager.FindByIdAsync(roleId);
             if (role == null)
-                return NotFound("Không tìm thấy role");
+                return NotFound("No role found");
             Claims = await _context.RoleClaims.Where(rc => rc.RoleId == role.Id).ToListAsync();
 
             if (!ModelState.IsValid)
@@ -66,7 +66,7 @@ namespace Courses_MVC.Areas.Admin.Pages.Role
             var result = await _roleManager.UpdateAsync(role);
             if (result.Succeeded)
             {
-                StatusMassage = $"Bạn vừa đổi tên: {Input.name}";
+                StatusMassage = $"You have just renamed the role: {Input.name}";
                 return RedirectToPage("./Index");
             }
             else

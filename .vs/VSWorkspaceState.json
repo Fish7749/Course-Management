@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Courses_MVC",
+    "\\Courses_MVC\\Courses_MVC",
+    "\\Courses_MVC\\Courses_MVC\\Areas\\Admin",
+    "\\Courses_MVC\\Courses_MVC\\Areas\\Admin\\Pages",
+    "\\Courses_MVC\\Courses_MVC\\Areas\\Identity",
+    "\\Courses_MVC\\Courses_MVC\\Helpers",
+    "\\Courses_MVC\\Courses_MVC\\Views",
+    "\\Courses_MVC\\Courses_MVC\\Views\\Shared",
+    "\\Courses_MVC\\Courses_MVC\\wwwroot",
+    "\\Courses_MVC\\Courses_MVC\\wwwroot\\img"
+  ],
+  "SelectedNode": "\\Courses_MVC\\Courses_MVC.sln",
+  "PreviewInSolutionExplorer": false
+}

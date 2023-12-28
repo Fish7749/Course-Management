@@ -104,10 +104,10 @@ namespace Courses_MVC.Controllers
 
                 });
                 _context.SaveChanges(); 
-                StatusMessage = $"Thêm thành công";
+                StatusMessage = $"Added successfully";
                 return RedirectToAction(nameof(DanhSachDangKi));
             }
-            StatusMessage = $"Thêm không thành công ";
+            StatusMessage = $"Add failed";
             return RedirectToAction(nameof(DanhSachDangKi));
         }
 
@@ -143,7 +143,7 @@ namespace Courses_MVC.Controllers
                 return NotFound();
             }
             _context.Registers.Remove(result);
-            StatusMessage = $"Đã xóa thành công đơn đăng kí của khách hàng {result.AppUser.UserName} đã đăng kí khóa học {result.Course.courseName}";
+            StatusMessage = $"Successfully deleted the registration form of {result.AppUser.UserName} who registered for the {result.Course.courseName} course";
             return RedirectToAction(nameof(DanhSachDangKi));
         }
 
@@ -175,12 +175,12 @@ namespace Courses_MVC.Controllers
                 result.userId = register.userId;
                 result.courseId = register.courseId;
                 _context.SaveChanges(); ;
-                StatusMessage = $"Cập nhật thành công";
+                StatusMessage = $"Updated successfully";
                 return RedirectToAction(nameof(DanhSachDangKi));
             }
             else
             {
-                StatusMessage = $"Cập nhật thành công ";
+                StatusMessage = $"Updated successfully";
                 return RedirectToAction(nameof(DanhSachDangKi));
             }
         }
@@ -251,9 +251,10 @@ namespace Courses_MVC.Controllers
         }
         public IActionResult ExportExcel(string filename, string? userId, int? courseId)
         {
-            string newExcelFile = @"D:\Xây dựng HTTT trên các framework\Project_MVC_Framework.git\Lập báo cáo\" + filename + ".xlsx";
+
+            string newExcelFile = @"C:\Users\Admin\Desktop\bt" + filename + ".xlsx";
             Export(newExcelFile, userId, courseId);
-            StatusMessage = $"Xuất file excel thành công";
+            StatusMessage = $"Export excel file successfully";
             return RedirectToAction(nameof(DanhSachDangKi));
         }
         public IActionResult ConfirmCart(List<int> courseId)
@@ -270,7 +271,7 @@ namespace Courses_MVC.Controllers
                 _context.SaveChanges();
                 
             }
-            StatusMessage = $"Đăng ký thành công";
+            StatusMessage = $"Registered successfully";
             int registerStatus = 1;
             return RedirectToAction("ClearAfterRegister", "Courses", new { status = registerStatus });
         }

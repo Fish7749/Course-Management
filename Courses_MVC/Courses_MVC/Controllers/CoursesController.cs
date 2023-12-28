@@ -49,7 +49,7 @@ namespace Courses_MVC.Controllers
             }
             else
             {
-                StatusMessage = $"Không tìm thấy";
+                StatusMessage = $"Not found";
                 coursesContext = coursesContext.Include(c => c.Discount).Include(c => c.Topic);
             }
             
@@ -129,12 +129,12 @@ namespace Courses_MVC.Controllers
             {
                 _context.Add(course);
                 await _context.SaveChangesAsync();
-                StatusMessage = $"Thêm thành công";
+                StatusMessage = $"Added successfully";
                 return RedirectToAction(nameof(listCourseAdmin));
             }
             else
             {
-                StatusMessage = $"Thêm không thành công";
+                StatusMessage = $"Add failed";
                 return RedirectToAction(nameof(listCourseAdmin));
             }
             ViewData["discountId"] = new SelectList(_context.Discounts, "discountId", "discription", course.discountId);
@@ -181,12 +181,12 @@ namespace Courses_MVC.Controllers
                 Course.imgCourse = updateCourse.imgCourse;
                 Course.originalPrice = updateCourse.originalPrice;
                 _context.SaveChanges();
-                StatusMessage = $"Cập nhật thành công";
+                StatusMessage = $"Updated successfully";
                 return RedirectToAction(nameof(listCourseAdmin));
             }
             else
             {
-                StatusMessage = $"Cập nhật không thành công";
+                StatusMessage = $"Update failed";
                 return RedirectToAction(nameof(listCourseAdmin));
             }
 
@@ -227,7 +227,7 @@ namespace Courses_MVC.Controllers
                         .FirstOrDefaultAsync(c => c.courseId == id);
             _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
-            StatusMessage = $"Xóa thành công";
+            StatusMessage = $"Deleted successfully";
             return RedirectToAction(nameof(listCourseAdmin));
         }
 
@@ -268,7 +268,7 @@ namespace Courses_MVC.Controllers
             var course = _context.Courses.FirstOrDefault(l => l.courseId == courseId);
             if (course == null)
             {
-                return NotFound("Không có khóa học");
+                return NotFound("There are no courses");
             }
             var cart = GetCartItems();
             var cartItem = cart.Find(l => l.Course.courseId == courseId);
@@ -293,7 +293,7 @@ namespace Courses_MVC.Controllers
             var course = _context.Courses.FirstOrDefault(l => l.courseId == courseId);
             if (course == null)
             {
-                return NotFound("Không có khóa học");
+                return NotFound("There are no courses");
             }
             var cart = GetCartItems();
             var cartItem = cart.Find(l => l.Course.courseId == courseId);

@@ -120,10 +120,10 @@ namespace Courses_MVC.Controllers
                     status = exerciseInUser.status
                 });
                 _context.SaveChanges();
-                StatusMessage = $"Thêm thành công ";
+                StatusMessage = $"Added successfully ";
                 return RedirectToAction(nameof(DanhSachBTUser));
             }
-            StatusMessage = "Thêm không thành công";
+            StatusMessage = "Add failed";
             return View();
         }
 
@@ -179,7 +179,7 @@ namespace Courses_MVC.Controllers
 
             if (result == null)
             {
-                StatusMessage = "Cập nhật không thành công";
+                StatusMessage = "Update failed";
                 return RedirectToAction(nameof(DanhSachBTUser));
             }
             else
@@ -191,7 +191,7 @@ namespace Courses_MVC.Controllers
                 result.content = exerciseInUser.content;
                 result.status = exerciseInUser.status;
                 _context.SaveChanges();
-                StatusMessage = $"Cập nhật thành công ";
+                StatusMessage = $"Updated successfully";
                 return RedirectToAction(nameof(DanhSachBTUser));
 
             }
@@ -212,7 +212,7 @@ namespace Courses_MVC.Controllers
             }
             _context.Remove(topic);
             _context.SaveChanges();
-            StatusMessage = $"Xóa thành công ";
+            StatusMessage = $"Deleted successfully";
             return RedirectToAction(nameof(DanhSachBTUser));
         }
 
@@ -223,7 +223,7 @@ namespace Courses_MVC.Controllers
             int curentlessonId = lessonId;
             if (content == null)
             {
-                ModelState.AddModelError(string.Empty, "Chưa có nội dung bài làm");
+                ModelState.AddModelError(string.Empty, "There is no assignment content yet");
             }
             _context.ExerciseInUsers.Add(new ExerciseInUser()
             {
@@ -233,12 +233,9 @@ namespace Courses_MVC.Controllers
                 submit = DateTime.Now
             }) ;
             _context.SaveChanges();
-            StatusMessage = $"Nộp bài tập thành công";
+            StatusMessage = $"Assignment submitted successfully";
             return RedirectToAction("LessonDetail", "lesson", new { id = curentlessonId });
         }
-
-
-
         private bool ExerciseInUserExists(string id)
         {
             return _context.ExerciseInUsers.Any(e => e.userId == id);

@@ -26,28 +26,28 @@ namespace Courses_MVC.Areas.Admin.Pages.User
         public async Task<IActionResult> OnGet(string userId)
         {
             if (userId == null)
-                return NotFound("Không tìm thấy role");
+                return NotFound("User not found");
             user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return NotFound("Không tìm thấy role");
+                return NotFound("User not found");
             }
             return Page();
         }
         public async Task<IActionResult> OnPostAsync(string userId)
         {
             if (userId == null)
-                return NotFound("Không tìm thấy role");
+                return NotFound("User not found");
             user = await _userManager.FindByIdAsync(userId);
             if (user == null)
-                return NotFound("Không tìm thấy role");
+                return NotFound("User not found");
 
 
             var result = await _userManager.DeleteAsync(user);
 
             if (result.Succeeded)
             {
-                StatusMessage = $"Bạn vừa xóa user có UserName: {user.UserName}";
+                StatusMessage = $"You just deleted user: {user.UserName}";
                 return RedirectToPage("./Index");
             }
             else

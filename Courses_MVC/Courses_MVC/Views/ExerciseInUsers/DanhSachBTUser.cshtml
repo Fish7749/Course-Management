@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Courses_MVC.Models.ExerciseInUser>
+@{
+    ViewData["Title"] = "Danh sách sinh viên làm bài tập";
+}
+
+<main class="main">
+    <partial name="_NavBar" />
+    <section>
+        <partial name="_AlertMessage" />
+        <h1 class="text-center mt-3" style="padding-top:30px">LIST OF SUBMITTED ASSIGNMENTS</h1>
+        <p class="count--css">Number of submitted assignments: @ViewBag.count</p>
+        <div class="search-create">
+            <form action="" method="post">
+                <div class="form-inline">
+                    <label class="control-label" style="margin-right: 5px;">Search</label>
+                    <input type="text" name="searchString" class="form-control col-md-6" style="width:500px">
+                    <input type="submit" class="btn btn-info" name="submit" value="Search">
+
+                </div>
+            </form>
+            <div>
+                <a asp-controller="ExerciseInUsers" asp-action="ThemSVBT" class="btn btn-outline-success"><i class="fas fa-plus"></i> Add</a>
+            </div>
+        </div>
+        <div class="table-overflow" style="width:125%">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            STT
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AppUser.UserName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Exercise.exerciseName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.submit)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.scores)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.status)
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td class="counterCell">
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AppUser.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Exercise.exerciseName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.submit)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.scores)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.status)
+                        </td>
+                        <td>
+                            <a asp-action="ChiTietBTUser" asp-route-exerciseId="@item.exerciseId" asp-route-userId="@item.userId"><i class="far fa-edit"></i></a> |
+                            <a asp-action="XoaBTUser" asp-route-exerciseId="@item.exerciseId" asp-route-userId="@item.userId" class="text-danger" onclick="return confirm('Bạn chắn chắn xóa chứ?')"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+</main>
+<script>
+    const active_lienhe = document.querySelector('#active--SV_BT')
+
+    active_lienhe.classList.add('active--css')
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

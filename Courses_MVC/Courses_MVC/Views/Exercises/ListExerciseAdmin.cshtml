@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Courses_MVC.Models.Exercise>
+
+@{
+    ViewData["Title"] = "Danh sách bài luyện tập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main">
+    <div class="sidebar-admin">
+        <partial name="_NavBar" />
+    </div>
+    <section class="section-courseadmin">
+        <partial name="_AlertMessage" />
+        <h1 class="text-center mt-3" style="padding-top:30px">LIST OF ASSIGNMENTS</h1>
+        <p class="count--css">Number of assignments: @ViewBag.count</p>
+        <div class="search-create">
+            <form action="/Exercises/listExerciseAdmin" method="post">
+                <div class="form-inline ">
+                    <label class="control-label " style="margin-right: 5px;">Search</label>
+                    <input type="text" name="searchString" class="form-control col-md-6" style="width:500px">
+                    <input type="submit" class="btn btn-info" name="submit" value="Search">
+                </div>
+            </form>
+            <div>
+                <a asp-controller="Exercises" asp-action="CreateExercise" class="btn btn-outline-success"><i class="fas fa-plus"></i>Add</a>
+            </div>
+        </div>
+        <div class="table-overflow" style="width:125%">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.deadline)
+                        </th>
+                        <th>
+                            Lesson
+                        </th>
+                        <th>
+                            Author
+                        </th>
+                        <th>Owner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="row-listcourses-admin">
+                            <td class="counterCell">
+                            </td>
+                            <td>
+                                Bài tập @Html.DisplayFor(modelItem => item.exerciseId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.deadline)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Lesson.title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AppUser.UserName)
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.exerciseId"><i class="far fa-edit"></i></a> |
+                                <a asp-action="DeleteExercise" asp-route-id="@item.exerciseId"><i class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+</main>
+@*class="text-danger" onclick="return confirm('Are you sure to delete?')*@
+<script>
+    const active_lienhe = document.querySelector('#active--baitap')
+    active_lienhe.classList.add('active--css')
+    /*document.querySelector('#active--khoahoc').classList.remove('active--css')*/
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

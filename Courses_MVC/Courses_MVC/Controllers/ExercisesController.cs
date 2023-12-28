@@ -46,7 +46,7 @@ namespace Courses_MVC.Controllers
             }
             else
             {
-                StatusMessage = $"Không tìm thấy";
+                StatusMessage = $"Not found";
                 listExercises = _context.Exercises.Include(e => e.AppUser).Include(e => e.Lesson);
                 count = listExercises.Count();
             }
@@ -114,12 +114,12 @@ namespace Courses_MVC.Controllers
             {
                 _context.Exercises.Add(exer);
                 _context.SaveChanges();
-                StatusMessage = $"Thêm thành công";
+                StatusMessage = $"Added successfully";
                 return RedirectToAction(nameof(ListExerciseAdmin));
             }
             else
             {
-                StatusMessage = $"Thêm không thành công";
+                StatusMessage = $"Add failed";
                 return RedirectToAction(nameof(ListExerciseAdmin));
             }
             ViewData["userId"] = new SelectList(_context.Users, "Id", "UserName");
@@ -167,12 +167,12 @@ namespace Courses_MVC.Controllers
                 exerUpdate.lessonId = exerUpdate.lessonId;
 
                 _context.SaveChanges();
-                StatusMessage = $"Cập nhật thành công";
+                StatusMessage = $"Updated successfully";
                 return RedirectToAction(nameof(ListExerciseAdmin));
             }
             else
             {
-                StatusMessage = $"Cập nhật không thành công";
+                StatusMessage = $"Update failed";
                 return RedirectToAction(nameof(ListExerciseAdmin));
             }
         }
@@ -204,7 +204,7 @@ namespace Courses_MVC.Controllers
             var execiseDelete = _context.Exercises.FirstOrDefault(e => e.exerciseId == id);
             _context.Exercises.Remove(execiseDelete);
             _context.SaveChanges();
-            StatusMessage = $"Xóa thành công";
+            StatusMessage = $"Deleted successfully";
             return RedirectToAction(nameof(ListExerciseAdmin));
 
         }

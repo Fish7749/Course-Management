@@ -101,12 +101,12 @@ namespace Courses_MVC.Controllers
                 result.sale = discount.sale;
                 result.time = discount.time;
                 _context.SaveChanges(); ;
-                StatusMessage = $"Cập nhật thành công";
+                StatusMessage = $"Updated successfully";
                 return RedirectToAction(nameof(DanhSachGiamGia));
             }
             else
             {
-                StatusMessage = $"Cập nhật không thành công ";
+                StatusMessage = $"Update failed";
                 return RedirectToAction(nameof(DanhSachGiamGia));
             }
         }
@@ -132,10 +132,10 @@ namespace Courses_MVC.Controllers
 
                 });
                 _context.SaveChanges();
-                StatusMessage = $"Thêm thành công";
+                StatusMessage = $"Added successfully";
                 return RedirectToAction(nameof(DanhSachGiamGia));
             }
-            StatusMessage = $"Thêm không thành công";
+            StatusMessage = $"Add failed";
             return RedirectToAction(nameof(DanhSachGiamGia));
 
         }
@@ -156,7 +156,7 @@ namespace Courses_MVC.Controllers
             }
             _context.Discounts.Remove(discount);
             await _context.SaveChangesAsync();
-            StatusMessage = $"Xóa thành công chương trình giảm giá {discount.discription}";
+            StatusMessage = $"Successfully deleted the discount program {discount.discription}";
             return RedirectToAction(nameof(DanhSachGiamGia));
         }
 

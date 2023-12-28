@@ -56,6 +56,7 @@
 .course-time, .count-lesson, .course-price {
     display: flex;
     justify-content: space-between;
+    
 }
 
     .course-time .course-time-title {
@@ -67,11 +68,11 @@
         color: #a5adba;
         font-weight: normal;
     }
-
-.course-price {
-    color: #a5adba;
-    font-weight: normal;
-}
+    
+    .course-price .course-price-title {
+        color: #a5adba;
+        font-weight: normal;
+    }
 
 .course-header-right-add-button {
     font-size: 14px;

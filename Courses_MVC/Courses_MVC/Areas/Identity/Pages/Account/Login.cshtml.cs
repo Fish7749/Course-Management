@@ -43,16 +43,16 @@ namespace Courses_MVC.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Nhập User name hoặc Email")]
-            [Display(Name = "Địa chỉ Email hoặc tên tài khoản")]
+            [Required(ErrorMessage = "Enter Username or Email")]
+            [Display(Name = "Email Address or Account Name")]
             public string UserNameOrEmail { get; set; }
 
-            [Required(ErrorMessage = "Vui lòng nhập {0}")]
+            [Required(ErrorMessage = "Please enter {0}")]
             [DataType(DataType.Password)]
-            [Display(Name = "Mật khẩu")]
+            [Display(Name = "Password")]
             public string Password { get; set; }
 
-            [Display(Name = "Nhớ thông tin đăng nhập?")]
+            [Display(Name = "Remember your password?")]
             public bool RememberMe { get; set; }
         }
 
@@ -95,7 +95,7 @@ namespace Courses_MVC.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("Đăng nhập thành công");
+                    _logger.LogInformation("Login successful");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -104,12 +104,12 @@ namespace Courses_MVC.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)//Đăng nhập thất bại
                 {
-                    _logger.LogWarning("Tài khoản bị khóa.");
+                    _logger.LogWarning("The account is locked.");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Đăng nhập thất bại, sai UserName hoặc Password.");
+                    ModelState.AddModelError(string.Empty, "Login failed, wrong UserName or Password.");
                     return Page();
                 }
             }

@@ -36,7 +36,7 @@ namespace Courses_MVC.Controllers
             ViewBag.countCmt = countCmt;
             if (courseDetail.ToArray().Length ==0)
             {
-                StatusMessage = "Khóa học đang được phát triển";
+                StatusMessage = "The course is under development";
                 return Redirect("/Courses/DanhSachHienTHi");
             }    
             else
@@ -136,12 +136,12 @@ namespace Courses_MVC.Controllers
             {
                 _context.Lessons.Add(lesson);
                 await _context.SaveChangesAsync();
-                StatusMessage = $"Thêm thành công";
+                StatusMessage = $"Added successfully";
                 return RedirectToAction(nameof(ListlessonAdmin));
             }
             else
             {
-                StatusMessage = $"Thêm không thành công";
+                StatusMessage = $"Add failed";
                 return RedirectToAction(nameof(ListlessonAdmin));
             }
 
@@ -177,12 +177,12 @@ namespace Courses_MVC.Controllers
                 lesson.description = lessonUpdate.description;
                 lesson.courseId = lessonUpdate.courseId;
                 _context.SaveChanges();
-                StatusMessage = $"Cập nhật thành công";
+                StatusMessage = $"Update successful";
                 return RedirectToAction(nameof(ListlessonAdmin));
             }
             else
             {
-                StatusMessage = $"Cập nhật không thành công";
+                StatusMessage = $"Update failed";
                 return RedirectToAction(nameof(ListlessonAdmin));
             }
 
@@ -217,16 +217,14 @@ namespace Courses_MVC.Controllers
             var lesson = await _context.Lessons.FirstOrDefaultAsync(l => l.lessonId == id);
             if (lesson == null)
             {
-                StatusMessage = $"Xóa không thành công";
+                StatusMessage = $"Delete failed";
                 return RedirectToAction(nameof(ListlessonAdmin));
             }
             _context.Lessons.Remove(lesson);
             await _context.SaveChangesAsync();
-            StatusMessage = $"Xóa thành công";
+            StatusMessage = $"Deleted successfully";
             return RedirectToAction(nameof(ListlessonAdmin));
         }
-
-       
 
         private bool LessonExists(int id)
         {

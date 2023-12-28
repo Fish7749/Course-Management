@@ -113,12 +113,12 @@ namespace Courses_MVC.Controllers
                 result.evaluate = comment.evaluate;
                 
                 _context.SaveChanges(); ;
-                StatusMessage = $"Cập nhật thành công";
+                StatusMessage = $"Updated successfully";
                 return RedirectToAction(nameof(DanhSachBinhLuan));
             }
             else
             {
-                StatusMessage = $"Cập nhật thành công ";
+                StatusMessage = $"Updated successfully";
                 return RedirectToAction(nameof(DanhSachBinhLuan));
             }
         }
@@ -182,10 +182,10 @@ namespace Courses_MVC.Controllers
 
                 });
                 _context.SaveChanges();
-                StatusMessage = $"Thêm thành công";
+                StatusMessage = $"Added successfully";
                 return RedirectToAction(nameof(DanhSachBinhLuan));
             }
-            StatusMessage = $"Thêm không thành công ";
+            StatusMessage = $"Add failed";
             return RedirectToAction(nameof(DanhSachBinhLuan));
         }
 
@@ -206,13 +206,13 @@ namespace Courses_MVC.Controllers
                 .FirstOrDefaultAsync(m => m.cmtId == id);
             if (comment == null)
             {
-                StatusMessage = "Xóa không thành công";
+                StatusMessage = "Delete failed";
                 return RedirectToAction(nameof(DanhSachBinhLuan));
             }
 
             _context.Comments.Remove(comment);
             await _context.SaveChangesAsync();
-            StatusMessage = "Xóa thành công";
+            StatusMessage = "Deleted successfully";
             return RedirectToAction(nameof(DanhSachBinhLuan));
         }
 
@@ -222,7 +222,7 @@ namespace Courses_MVC.Controllers
             int currentPage = courseId;
             if(content == null && evaluate < 0 && evaluate > 10)
             {
-                ModelState.AddModelError(string.Empty, "Không bình luận được");
+                ModelState.AddModelError(string.Empty, "Cannot comment");
             }
             
             var user = _userManager.GetUserId(User);
@@ -235,10 +235,10 @@ namespace Courses_MVC.Controllers
                     evaluate = evaluate
                 });
                 _context.SaveChanges();
-                StatusMessage = "Cảm ơn ý kiến đóng góp của bạn! ";
+                StatusMessage = "Thank you for your comments!";
                 return RedirectToAction("LessonCourse", "Lesson", new { id = currentPage });
             }
-            StatusMessage = "Bình luận không thành công! ";
+            StatusMessage = "Comment failed! ";
             return RedirectToAction("LessonCourse", "Lesson", new { id = currentPage });
         }
 

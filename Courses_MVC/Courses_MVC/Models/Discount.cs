@@ -10,16 +10,16 @@ namespace Courses_MVC.Models
     {
         public int discountId { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Mô tả")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "Discription")]
         public string? discription { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Thời gian áp dụng")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "Time")]
         public DateTime time { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Giảm giá")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "Amout")]
         public float sale { get; set; }
 
         public ICollection<Course> Courses { get; set; }

@@ -5,19 +5,18 @@
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
-<h4>@ViewData["Title"]</h4>
 
-<div class="row">
+<div class="row" style="margin-bottom:87px">
     <div class="col-md-6">
-        <p>Bạn có thể tải dữ liệu cá nhân về hoặc xóa thông tin cá nhân của bạn trên ứng dụng này.</p>
+        <p>You can download personal data or delete your personal information on this application.</p>
         <p>
-            <strong>Nếu xóa tài khoản thì không thể phục hồi.</strong>
+            <strong>If your account is deleted, it cannot be recovered.</strong>
         </p>
         <form id="download-data" asp-page="DownloadPersonalData" method="post" class="form-group">
-            <button class="btn btn-primary" type="submit">Tải dữ liệu</button>
+            <button class="btn btn-primary" type="submit">Download data</button>
         </form>
         <p>
-            <a id="delete" asp-page="DeletePersonalData" class="btn btn-primary">Xóa tài khoản</a>
+            <a id="delete" asp-page="DeletePersonalData" class="btn btn-primary">Delete my account</a>
         </p>
     </div>
 </div>

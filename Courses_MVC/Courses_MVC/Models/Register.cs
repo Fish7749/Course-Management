@@ -10,17 +10,17 @@ namespace Courses_MVC.Models
     {
         public int registerId { get; set; }
 
-        [Display(Name = "Ngày đăng kí")]
+        [Display(Name = "Registration Date")]
         public DateTime timeReg { get; set; }
 
-        [Display(Name = "Tên khách hàng")]
+        [Display(Name = "Customer name")]
         [Required(ErrorMessage = "Phải chọn {0}")]
         public string userId { get; set; }
 
         public AppUser AppUser { get; set; }
 
 
-        [Display(Name = "Tên khóa học")]
+        [Display(Name = "Course name")]
         [Required(ErrorMessage = "Phải chọn {0}")]
         public int courseId { get; set; }  
 

@@ -10,8 +10,8 @@ namespace Courses_MVC.Models
     {
         public int topicId { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Tên chủ đề")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "Topic Name")]
         public string topicName { get; set; }
         public ICollection<Course> Course { get; set; }
 

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Courses_MVC.Models.Topic>
+@{
+    ViewData["Title"] = "Danh sách chủ đề";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main">
+    <partial name="_NavBar" />
+    <section>
+        <partial name="_AlertMessage" />
+        <h1 class="text-center mt-3" style="padding-top:30px">LIST OF TOPICS</h1>
+        <p class="count--css">Number of topics: @ViewBag.count</p>
+        <div class="search-create">
+            <form action="" method="post">
+                <div class="form-inline">
+                    <label class="control-label" style="margin-right: 5px;">Search</label>
+                    <input type="text" name="searchString" class="form-control col-md-6" style="width:500px">
+                    <input type="submit" class="btn btn-info" name="submit" value="Search">
+
+                </div>
+            </form>
+            <div>
+                <a asp-controller="Topic" asp-action="ThemTopic" class="btn btn-outline-success"><i class="fas fa-plus"></i> Add</a>
+            </div>
+        </div>
+        <div class="table-overflow" style="width:125%">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.topicName)
+                        </th>
+                        
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="counterCell">
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.topicName)
+                            </td>
+                            
+                            <td>
+                                <a asp-action="ChiTietTopic" asp-route-id="@item.topicId"><i class="far fa-edit"></i></a> |
+                                <a asp-action="XoaTopic" asp-route-id="@item.topicId" class="text-danger" onclick="return confirm('Are you sure to delete?')"><i class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+</main>
+<script>
+    const active_lienhe = document.querySelector('#active--chude')
+
+    active_lienhe.classList.add('active--css')
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

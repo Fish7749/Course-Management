@@ -112,7 +112,7 @@ namespace Courses_MVC.Controllers
                 }
                 
             }
-            StatusMessage = "Cảm ơn ý kiến đóng góp của bạn!";
+            StatusMessage = "Thank you for your feedback!";
             return RedirectToAction(nameof(Create));
         }
 
@@ -131,7 +131,7 @@ namespace Courses_MVC.Controllers
                     contact.time = DateTime.Now;
                     _context.Add(contact);
                     _context.SaveChanges();
-                    StatusMessage = $"Thêm thành công liên hệ của khách hàng {contact.HoTen}";
+                    StatusMessage = $"Successfully added customer contact {contact.HoTen}";
                     return RedirectToAction(nameof(Index));
 
                 }
@@ -140,12 +140,12 @@ namespace Courses_MVC.Controllers
                     contact.time = DateTime.Now;
                     _context.Add(contact);
                     _context.SaveChanges();
-                    StatusMessage = $"Thêm thành công liên hệ của khách hàng {contact.HoTen}";
+                    StatusMessage = $"Successfully added customer contact {contact.HoTen}";
                     return RedirectToAction(nameof(Index));
                 }
                 
             }
-            StatusMessage = $"Thêm không thành công";
+            StatusMessage = $"Add failed";
             return View(contact);
         }
 
@@ -185,7 +185,7 @@ namespace Courses_MVC.Controllers
             }
             _context.Contact.Remove(contact);
             await _context.SaveChangesAsync();
-            StatusMessage = $"Đã xóa thành công liên hệ của {_userManager.GetUserName(User)}";
+            StatusMessage = $"Successfully deleted your contact {_userManager.GetUserName(User)}";
             return RedirectToAction(nameof(Index));
         }
 

@@ -1,4 +1,4 @@
-﻿
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -22,7 +22,7 @@
 <div class="app mb-5 mt-3">
     <div class="sidebar">
         <div class="header">
-            <h5>Phòng chat</h5>
+            <h5>Chat room</h5>
             <a href="#" id="create-room" data-toggle="modal" data-target="#create-room-modal">
                 <i class="fas fa-plus"></i>
             </a>
@@ -53,7 +53,7 @@
     </div>
     <div class="main-content" data-bind="visible: joinedRoom().length == 0">
         <span class="m-auto">
-            Vui lòng chọn phòng!
+            Please choose a room!
         </span>
     </div>
 
@@ -96,7 +96,7 @@
         <div class="chat-input">
             <input id="chat-message" class="form-control" type="text" value=""
                    data-bind="value:message, valueUpdate: 'afterkeydown', event: { keypress: onEnter }"
-                   placeholder="Bạn đang nghĩ gì?" />
+                   placeholder="What are you thinking?" />
             <div class="actions d-flex align-items-center">
                 <form method="post" asp-action="Upload"
                       asp-controller="Upload" enctype="multipart/form-data" id="uploadForm">
@@ -146,7 +146,7 @@
     </div>
     <div class="users-container">
         <div class="header">
-            <h5>Có (<span data-bind="text: filteredChatUsers().length">0</span>) học viên trong phòng trò chuyện</h5>
+            <h5>Member is online (<span data-bind="text: filteredChatUsers().length">0</span>)</h5>
         </div>
 
         <ul id="users-list" class="list-unstyled" data-bind="foreach: filteredChatUsers">
@@ -162,7 +162,7 @@
                 </div>
             </li>
         </ul>
-        <input type="text" class="form-control" placeholder="Tìm kiếm học viên..." data-bind="value: filter, valueUpdate: 'afterkeydown'" />
+        <input type="text" class="form-control" placeholder="Find a member..." data-bind="value: filter, valueUpdate: 'afterkeydown'" />
     </div>
 
 
@@ -172,17 +172,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Thêm phòng</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                <h5 class="modal-title">Add room</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Back">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <input type="text" class="form-control" id="roomName" placeholder="Tên phòng">
+                <input type="text" class="form-control" id="roomName" placeholder="Room name">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click: createRoom">Thêm</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click: createRoom">Add</button>
             </div>
         </div>
     </div>
@@ -191,7 +191,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Sửa phòng</h5>
+                <h5 class="modal-title">Edit room</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -201,9 +201,9 @@
                        data-bind="value: $root.joinedRoom()">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
                 <button type="button" class="btn btn-primary" data-bind="click: editRoom" data-dismiss="modal">
-                    Cập nhật
+                    Update
                 </button>
             </div>
         </div>
@@ -214,22 +214,21 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Xóa phòng</h5>
+                <h5 class="modal-title">Delete room</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Bạn có chắc chắn xóa phòng này không?</p>
+                <p>Are you sure to delete this room?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"
                         data-dismiss="modal">
-                    Đóng
+                    Back
                 </button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal" data-bind="click: deleteRoom">
-
-                    Xóa
+                    Confirm
                 </button>
             </div>
         </div>

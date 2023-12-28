@@ -87,12 +87,12 @@ namespace Courses_MVC.Controllers
                 result.totalPrice = receipt.totalPrice;
                 result.timeReceipt = receipt.timeReceipt;
                 _context.SaveChanges(); 
-                StatusMessage = $"Cập nhật thành công";
+                StatusMessage = $"Updated successfully";
                 return RedirectToAction(nameof(DanhSachHoaDon));
             }
             else
             {
-                StatusMessage = $"Cập nhật không thành công ";
+                StatusMessage = $"Update failed";
                 return RedirectToAction(nameof(DanhSachHoaDon));
             }
         }
@@ -118,13 +118,9 @@ namespace Courses_MVC.Controllers
                 return RedirectToAction(nameof(DanhSachHoaDon));
             }
             ViewData["registerId"] = new SelectList(_context.Registers, "registerId", "registerId", receipt.registerId);
-            StatusMessage = $"Thêm thành công hóa đơn";
+            StatusMessage = $"Successfully added invoice";
             return View(receipt);
         }
-
-        
-        
-        
 
         // GET: Receipts/Delete/5
         public async Task<IActionResult> XoaHoaDon(int? id)
@@ -139,12 +135,12 @@ namespace Courses_MVC.Controllers
                 .FirstOrDefaultAsync(m => m.receiptId == id);
             if (receipt == null)
             {
-                StatusMessage = $"Xóa không thành công ";
+                StatusMessage = $"Delete failed";
                 return RedirectToAction(nameof(DanhSachHoaDon));
             }
             _context.Receipts.Remove(receipt);
             await _context.SaveChangesAsync();
-            StatusMessage = $"Xóa thành công hóa đơn có mã hóa đơn là {receipt.receiptId}";
+            StatusMessage = $"Successfully deleted invoice with invoice code {receipt.receiptId}";
             return RedirectToAction(nameof(DanhSachHoaDon));
         }
 

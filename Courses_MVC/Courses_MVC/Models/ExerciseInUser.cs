@@ -8,34 +8,34 @@ namespace Courses_MVC.Models
 {
     public class ExerciseInUser
     {
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Bài tập")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "Assignment")]
         public int exerciseId { get; set; }
 
         
         public Exercise Exercise { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Tên người dùng")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "User Name")]
         public string userId { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Bài làm")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "Content")]
         public string content { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
+        [Required(ErrorMessage = "You must enter {0}")]
         
-        [Display(Name = "Tình trạng")]
+        [Display(Name = "Status")]
         public string status { get; set; }
 
         public AppUser AppUser { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Nộp bài")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "Submit Time")]
         public DateTime submit { get; set; }
 
-        [Display(Name = "Điểm")]
-        [Range(0,10,ErrorMessage ="{0} phải nằm từ thang điểm 0 đến 10")]
+        [Display(Name = "Score")]
+        [Range(0,10,ErrorMessage = "{0} must be on a scale of 0 to 10")]
         public float scores { get; set; }
 
     }

@@ -26,28 +26,28 @@ namespace Courses_MVC.Areas.Admin.Pages.Role
         public async Task<IActionResult> OnGet(string roleId)
         {
             if (roleId == null)
-                return NotFound("Không tìm thấy role");
+                return NotFound("No role found");
             role = await _roleManager.FindByIdAsync(roleId);
             if (role == null)
             {
-                return NotFound("Không tìm thấy role");
+                return NotFound("No role found");
             }
             return Page();
         }
         public async Task<IActionResult> OnPostAsync(string roleId)
         {
             if (roleId == null)
-                return NotFound("Không tìm thấy role");
+                return NotFound("No role found");
             role = await _roleManager.FindByIdAsync(roleId);
             if (role == null)
-                return NotFound("Không tìm thấy role");
+                return NotFound("No role found");
 
 
             var result = await _roleManager.DeleteAsync(role);
 
             if (result.Succeeded)
             {
-                StatusMassage = $"Bạn vừa xóa role: {role.Name}";
+                StatusMassage = $"You just deleted role: {role.Name}";
                 return RedirectToPage("./Index");
             }
             else

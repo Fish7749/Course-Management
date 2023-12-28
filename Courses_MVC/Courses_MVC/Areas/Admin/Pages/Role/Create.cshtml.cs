@@ -23,9 +23,9 @@ namespace Courses_MVC.Areas.Admin.Pages.Role
         
         public class InputModel
         {
-            [Display(Name ="Tên của role")]
-            [Required(ErrorMessage = "Phải nhập {0}")]
-            [StringLength(266, MinimumLength = 3, ErrorMessage ="{0} phải dài từ {2} đến {1} kí tự")]
+            [Display(Name ="Name of role")]
+            [Required(ErrorMessage = "You must enter {0}")]
+            [StringLength(266, MinimumLength = 3, ErrorMessage = "{0} must be between {2} and {1} characters")]
             public string name { get; set; }
         }
         [BindProperty]
@@ -44,7 +44,7 @@ namespace Courses_MVC.Areas.Admin.Pages.Role
             var result = await _roleManager.CreateAsync(newRole);
             if(result.Succeeded)
             {
-                StatusMassage = $"Bạn vừa tạo role mới: {Input.name}";
+                StatusMassage = $"You have just created a new role: {Input.name}";
                 return RedirectToPage("./Index");
             }
             else

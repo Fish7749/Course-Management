@@ -65,12 +65,12 @@ namespace Courses_MVC.Controllers
             {
                 _context.Add(topic);
                 _context.SaveChanges();
-                StatusMessage = $"Thêm thành công chủ đề {topic.topicName}";
+                StatusMessage = $"Topic added successfully {topic.topicName}";
                 return RedirectToAction(nameof(DanhSachTopic));
             }
             else
             {
-                StatusMessage = $"Thêm không thành công";
+                StatusMessage = $"Add failed";
                 return RedirectToAction(nameof(DanhSachTopic));
             }
         }
@@ -88,7 +88,7 @@ namespace Courses_MVC.Controllers
             }
             _context.Remove(topic);
             _context.SaveChanges();
-            StatusMessage = $"Xóa thành công chủ đề {topic.topicName}";
+            StatusMessage = $"Successfully deleted topic {topic.topicName}";
             return RedirectToAction(nameof(DanhSachTopic));
         }
 
@@ -141,7 +141,7 @@ namespace Courses_MVC.Controllers
             }
             result.topicName = topic.topicName;
             _context.SaveChanges();
-            StatusMessage = $"Cập nhập thành công {topic.topicName}";
+            StatusMessage = $"Updated successfully {topic.topicName}";
             return RedirectToAction(nameof(DanhSachTopic));
         }
         private bool TopicExists(int id)

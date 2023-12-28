@@ -11,15 +11,15 @@ namespace Courses_MVC.Models
     {
         public int receiptId { get; set; }
 
-        [Display(Name = "Tổng tiền")]
+        [Display(Name = "Total Price")]
         public float totalPrice { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Thời gian đăng kí")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "Time")]
         public DateTime timeReceipt { get; set; }
 
-        [Required(ErrorMessage = "Phải nhập {0}")]
-        [Display(Name = "Đăng kí")]
+        [Required(ErrorMessage = "You must enter {0}")]
+        [Display(Name = "Register")]
         public int registerId { get; set; }
 
         public Register Register { get; set; }

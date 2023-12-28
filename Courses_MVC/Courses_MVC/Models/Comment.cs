@@ -8,28 +8,28 @@ namespace Courses_MVC.Models
 {
     public class Comment
     {
-        [Display(Name = "Mã bình luận")]
+        [Display(Name = "Comment code")]
         public int cmtId { get; set; }
 
-        [Display(Name ="Tên người dùng")]
-        [Required(ErrorMessage = "Phải nhập {0}")]
+        [Display(Name = "User name")]
+        [Required(ErrorMessage = "You must enter {0}")]
         public string userId { get; set; }
         
         public AppUser AppUser { get; set; }
 
-        [Display(Name = "Tên sinh khóa học")]
-        [Required(ErrorMessage = "Phải nhập {0}")]
+        [Display(Name = "Course name")]
+        [Required(ErrorMessage = "You must enter {0}")]
         public int courseId { get; set; }
 
         public Course Course { get; set; }
 
-        [Display(Name = "Nội dung")]
-        [Required(ErrorMessage = "Phải nhập {0}")]
+        [Display(Name = "Content")]
+        [Required(ErrorMessage = "You must enter {0}")]
         public string content { get; set; }
 
-        [Display(Name = "Điểm đánh giá")]
-        [Range(0,10,ErrorMessage ="{0} phải từ 0 đến 10 điểm")]
-        [Required(ErrorMessage = "Phải nhập {0}")]
+        [Display(Name = "Rating")]
+        [Range(0,10,ErrorMessage = "{0} must be from 0 to 10 points")]
+        [Required(ErrorMessage = "You must enter {0}")]
         public float evaluate { get; set; }   
 
         
